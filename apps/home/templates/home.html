@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section id="intro" class="my-lg-9 mt-5">
+    <div class="container-lg">
+        <div class="row flex-row-reverse align-items-center ">
+            <div class="col-lg-8">
+                <div class="image-holder text-end">
+                    <img src="{% static 'img/hero-img-3.png' %}" alt="banner" class="img-fluid ">
+                </div>
+            </div>
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <div class="banner-content ">
+                    <h6 class="sub-heading">Beauty products</h6>
+                    <h2 class="display-3 fw-semibold my-4 my-lg-5">Skin care made simple &amp; Affordable</h2>
+                    <p class="fs-3">Feugiat tellus metus lacus vulputate sed nec, feugiat at. Ac ultrices facilisis
+                        suspendisse
+                        nec sagittis, mauris quisque pellentesque tincidunt. </p>
+                    <a href="shop.html" class="btn btn-outline-dark text-uppercase mt-4 mt-lg-5">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr class="text-dark opacity-100 mx-lg-5">
+
+
+<!-- ABOUT US SECTION -->
+<section id="about us" class="my-lg-9">
+    <div class="container-lg">
+        <div class="row align-items-center ">
+            <div class="col-lg-6">
+                <div class="image-holder">
+                    <img src="images/banner-image2.png" alt="banner" class="img-fluid ">
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="banner-content ">
+                    <ul class="nav nav-tabs d-block border-0" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link text-start p-0" id="safe-tab" data-bs-toggle="tab"
+                                data-bs-target="#safe-tab-pane" type="button" role="tab" aria-controls="safe-tab-pane"
+                                aria-selected="false" tabindex="-1">
+                                <h6 class="sub-heading m-0">01</h6>
+                                <h2 class="display-3 fw-semibold mb-5">100% safe</h2>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link text-start p-0" id="natural-tab" data-bs-toggle="tab"
+                                data-bs-target="#natural-tab-pane" type="button" role="tab"
+                                aria-controls="natural-tab-pane" aria-selected="false" tabindex="-1">
+                                <h6 class="sub-heading m-0">02</h6>
+                                <h2 class="display-3 fw-semibold mb-5">Natural</h2>
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link text-start p-0 active" id="organic-tab" data-bs-toggle="tab"
+                                data-bs-target="#organic-tab-pane" type="button" role="tab"
+                                aria-controls="organic-tab-pane" aria-selected="true">
+                                <h6 class="sub-heading m-0">03</h6>
+                                <h2 class="display-3 fw-semibold mb-5">Organic</h2>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade" id="safe-tab-pane" role="tabpanel" aria-labelledby="safe-tab"
+                            tabindex="0">
+                            <p class="fs-3">Dolor sit amet consectetur adipisicing elit. Accusamus, deserunt officiis?
+                                Adipisci
+                                blanditiis pariatur necessitatibus cumque voluptas vitae non aspernatur, delectus odio
+                                in illum
+                                tenetur ut maxime et itaque dolore.</p>
+                        </div>
+                        <div class="tab-pane fade" id="natural-tab-pane" role="tabpanel" aria-labelledby="natural-tab"
+                            tabindex="0">
+                            <p class="fs-3">Ipsum, dolor sit amet consectetur adipisicing elit. Velit repellat nulla
+                                corrupti
+                                asperiores earum, ipsum at maxime esse? In fugit, quis est at repudiandae obcaecati eius
+                                magni
+                                doloribus a aliquid?</p>
+                        </div>
+                        <div class="tab-pane fade active show" id="organic-tab-pane" role="tabpanel"
+                            aria-labelledby="organic-tab" tabindex="0">
+                            <p class="fs-3">Sit amet consectetur, adipisicing elit. Praesentium ipsum sint
+                                necessitatibus odit
+                                consequatur sunt deleniti asperiores? Beatae dolorem, aut doloribus magni autem fugiat
+                                labore,
+                                doloremque, facere consequuntur vitae ut?</p>
+                        </div>
+
+                    </div>
+
+                    <a href="about.html" class="btn btn-outline-dark text-uppercase mt-5">Learn More</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

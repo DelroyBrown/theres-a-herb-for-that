@@ -1,0 +1,214 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<!-- SVG sprite placeholder (replace with your real sprite or external file) -->
+<svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <symbol id="navbar-icon" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+    </symbol>
+    <symbol id="user" viewBox="0 0 24 24">
+        <path fill="currentColor"
+            d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-5.33 0-8 2.67-8 6v2h16v-2c0-3.33-2.67-6-8-6" />
+    </symbol>
+    <symbol id="search" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M9.5 3a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13M20 20l-4.35-4.35" />
+    </symbol>
+    <symbol id="cart" viewBox="0 0 24 24">
+        <path fill="currentColor"
+            d="M7 18a2 2 0 1 0 0 4a2 2 0 0 0 0-4m10 0a2 2 0 1 0 0 4a2 2 0 0 0 0-4M7.16 14h9.93a2 2 0 0 0 1.9-1.37l2.38-6.65A1 1 0 0 0 20.44 4H6.21L5.27 1.43A1 1 0 0 0 4.35 1H2v2h1.36l3.6 9.59l-.84 2.11A2 2 0 0 0 8 17h12v-2H8z" />
+    </symbol>
+</svg>
+
+<header id="header" class="site-header border-bottom mx-lg-5 py-3">
+    <div class="container-fluid px-4 px-lg-2">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg" aria-label="Primary navigation">
+                <!-- Mobile toggler (offcanvas) -->
+                <button class="navbar-toggler d-flex d-lg-none p-0 order-3 border-0 shadow-none" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <svg class="navbar-icon" width="40" height="40">
+                        <use xlink:href="#navbar-icon"></use>
+                    </svg>
+                </button>
+
+                <!-- Mobile brand -->
+                <a href="index.html" class="navbar-brand d-flex d-lg-none">
+                    <img src="images/main-logo.png" alt="Logo" height="40" />
+                </a>
+
+                <!-- Offcanvas nav -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar"
+                    aria-labelledby="bdNavbarOffcanvasLabel">
+                    <div class="offcanvas-header p-4">
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"
+                            aria-label="Close" data-bs-target="#bdNavbar"></button>
+                    </div>
+
+                    <div class="offcanvas-body d-flex justify-content-lg-between align-items-lg-center p-4 p-lg-0">
+                        <!-- Desktop brand -->
+                        <div>
+                            <a href="index.html" class="navbar-brand d-none d-lg-flex">
+                                <img src="images/main-logo.png" alt="Logo" height="48" />
+                            </a>
+                        </div>
+
+                        <!-- Main menu -->
+                        <div>
+                            <div class="navbar-collapse" id="navbarMenu">
+                                <ul class="navbar-nav align-items-lg-center">
+                                    <li class="nav-item"><a class="nav-link text-uppercase pe-4"
+                                            href="index.html">Home</a></li>
+                                    <li class="nav-item d-none d-lg-flex">
+                                        <p class="nav-link text-uppercase m-0 pe-4">/</p>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link text-uppercase pe-4"
+                                            href="about.html">About</a></li>
+                                    <li class="nav-item d-none d-lg-flex">
+                                        <p class="nav-link text-uppercase m-0 pe-4">/</p>
+                                    </li>
+
+                                    <!-- Shop -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link text-uppercase me-4 dropdown-toggle"
+                                            data-bs-toggle="dropdown" href="#" role="button"
+                                            aria-expanded="false">Shop</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="shop.html" class="dropdown-item fw-semibold">Shop <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="single-product.html" class="dropdown-item fw-semibold">Single
+                                                    Product <span class="badge bg-primary">PRO</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="nav-item d-none d-lg-flex">
+                                        <p class="nav-link text-uppercase m-0 pe-4">/</p>
+                                    </li>
+
+                                    <!-- Blog -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link text-uppercase me-4 dropdown-toggle"
+                                            data-bs-toggle="dropdown" href="#" role="button"
+                                            aria-expanded="false">Blog</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="blog.html" class="dropdown-item fw-semibold">Blog <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="single-post.html" class="dropdown-item fw-semibold">Single Post
+                                                    <span class="badge bg-primary">PRO</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="nav-item d-none d-lg-flex">
+                                        <p class="nav-link text-uppercase m-0 pe-4">/</p>
+                                    </li>
+
+                                    <!-- Pages -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link text-uppercase me-4 dropdown-toggle"
+                                            data-bs-toggle="dropdown" href="#" role="button"
+                                            aria-expanded="false">Pages</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="about.html" class="dropdown-item fw-semibold">About <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="cart.html" class="dropdown-item fw-semibold">Cart <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="wishlist.html" class="dropdown-item fw-semibold">Wishlist <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="checkout.html" class="dropdown-item fw-semibold">Checkout <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="contact.html" class="dropdown-item fw-semibold">Contact <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="faqs.html" class="dropdown-item fw-semibold">FAQs <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="account.html" class="dropdown-item fw-semibold">Account <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="team.html" class="dropdown-item fw-semibold">Team <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="thank-you.html" class="dropdown-item fw-semibold">Thankyou
+                                                    <span class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="error.html" class="dropdown-item fw-semibold">Error <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                            <li><a href="styles.html" class="dropdown-item fw-semibold">Style <span
+                                                        class="badge bg-primary">PRO</span></a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="nav-item d-none d-lg-flex">
+                                        <p class="nav-link text-uppercase m-0 pe-4">/</p>
+                                    </li>
+
+                                    <li class="nav-item mt-4 mt-lg-0">
+                                        <a class="nav-link text-uppercase fw-bold"
+                                            href="https://templatesjungle.gumroad.com/l/serene-beauty-ecommerce-website-template"
+                                            target="_blank" rel="noopener">GET PRO</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- User / utility icons (desktop) -->
+                        <div>
+                            <ul
+                                class="user-items list-unstyled d-none d-lg-flex justify-content-end align-items-center flex-grow-1 gap-4 m-0">
+                                <li>
+                                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogin"
+                                        aria-controls="offcanvasLogin" aria-label="Open login panel">
+                                        <svg class="user" width="20" height="20">
+                                            <use xlink:href="#user"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li class="search-item" data-bs-toggle="collapse" data-bs-target="#search-box"
+                                    aria-controls="search-box" aria-expanded="false" aria-label="Toggle search">
+                                    <a href="#">
+                                        <svg class="search" width="20" height="20">
+                                            <use xlink:href="#search"></use>
+                                        </svg>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="cart.html" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                                        aria-controls="offcanvasCart" aria-label="Open cart">
+                                        <svg class="cart" width="20" height="20">
+                                            <use xlink:href="#cart"></use>
+                                        </svg>
+                                        <span>(0)</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Collapsible search bar (desktop) -->
+<div id="search-box" class="search-box collapse bg-body border-bottom">
+    <div class="container-fluid px-4 px-lg-2 py-3 position-relative">
+        <div class="search-wrap d-flex justify-content-center align-items-center gap-2">
+            <input type="text" class="form-control search-input" placeholder="Search products…" aria-label="Search" />
+            <svg class="search" width="24" height="24">
+                <use xlink:href="#search"></use>
+            </svg>
+        </div>
+        <button class="btn-close position-absolute close-button" data-bs-toggle="collapse" data-bs-target="#search-box"
+            aria-label="Close search"></button>
+    </div>
+</div>
+
+<!-- Demo offcanvas targets for Login & Cart (empty shells) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLogin" aria-labelledby="offcanvasLoginLabel"></div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel"></div>
+
+<script>
+    // Keep your CSS-driven height animation for the search box by toggling .active with Collapse events
+    (function () {
+        var searchBox = document.getElementById('search-box');
+        if (!searchBox) return;
+        searchBox.addEventListener('show.bs.collapse', function () { searchBox.classList.add('active'); });
+        searchBox.addEventListener('hide.bs.collapse', function () { searchBox.classList.remove('active'); });
+    })();
+</script>

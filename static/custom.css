@@ -1,0 +1,90 @@
+/* ========== LOOK & LAYOUT ==========
+Split nav left/right, centered logo, subtle transitions */
+.navbar {
+    --bs-navbar-padding-y: .5rem;
+}
+
+
+/* Center logo on lg+ */
+@media (min-width: 992px) {
+    .navbar .brand-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+
+/* Hover-open on desktop; keep click on touch */
+@media (pointer: fine) and (min-width: 992px) {
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+}
+
+
+/* Mega menu spans container width */
+.megamenu {
+    position: static;
+}
+
+.megamenu>.dropdown-menu {
+    width: 100%;
+    left: 0;
+    right: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+
+/* Two-level submenu */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-left: .1rem;
+}
+
+
+/* Search cover using offcanvas-top */
+.search-input {
+    max-width: 720px;
+}
+
+
+/* Sticky shadow */
+.navbar.stuck {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+}
+
+
+/* ========== TRANSITIONS ==========
+Fade/slide on dropdowns incl. mega */
+.dropdown-menu {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .15s ease, transform .15s ease;
+    display: block;
+    visibility: hidden;
+}
+
+.dropdown.show>.dropdown-menu,
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+
+/* Right caret for submenu trigger */
+.submenu-caret {
+    font-size: .825rem;
+    opacity: .7;
+}
