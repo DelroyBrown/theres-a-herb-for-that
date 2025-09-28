@@ -88,3 +88,9 @@ Fade/slide on dropdowns incl. mega */
     font-size: .825rem;
     opacity: .7;
 }
+
+/* Font Helpers */
+
+.letter-spaced-6px {
+    letter-spacing: 6px;
+}
