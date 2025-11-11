@@ -59,8 +59,7 @@
                         <div>
                             <div class="navbar-collapse" id="navbarMenu">
                                 <ul class="navbar-nav align-items-lg-center">
-                                    <li class="nav-item"><a class="nav-link text-uppercase pe-4"
-                                            href="/">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link text-uppercase pe-4" href="/">Home</a></li>
                                     <li class="nav-item d-none d-lg-flex">
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
@@ -73,26 +72,14 @@
                                     <li class="nav-item d-none d-lg-flex">
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
-
-                                    <!-- Shop -->
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link text-uppercase me-4 dropdown-toggle"
-                                            data-bs-toggle="dropdown" href="#" role="button"
-                                            aria-expanded="false">Shop</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="shop.html" class="dropdown-item fw-semibold">Shop <span
-                                                        class="badge bg-primary">PRO</span></a></li>
-                                            <li><a href="single-product.html" class="dropdown-item fw-semibold">Single
-                                                    Product <span class="badge bg-primary">PRO</span></a></li>
-                                        </ul>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-uppercase pe-4" href="{% url 'shop:shop' %}">
+                                            Shop
+                                        </a>
                                     </li>
-
                                     <li class="nav-item d-none d-lg-flex">
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
-
-
-
 
                                 </ul>
                             </div>
