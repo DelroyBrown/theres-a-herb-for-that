@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Project apps
     "home",
+    "consultations",
 ]
 
 MIDDLEWARE = [

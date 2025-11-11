@@ -36,7 +36,7 @@
 
                 <!-- Mobile brand -->
                 <a href="index.html" class="navbar-brand d-flex d-lg-none">
-                    <img src="images/main-logo.png" alt="Logo" height="40" />
+                    <img src="{% static 'img/scentience_logo.png' %}" alt="Logo" height="40" />
                 </a>
 
                 <!-- Offcanvas nav -->
@@ -51,7 +51,7 @@
                         <!-- Desktop brand -->
                         <div>
                             <a href="index.html" class="navbar-brand d-none d-lg-flex">
-                                <img src="images/main-logo.png" alt="Logo" height="48" />
+                                <img src="{% static 'img/scentience_logo.png' %}" alt="Logo" height="48" />
                             </a>
                         </div>
 
@@ -60,12 +60,16 @@
                             <div class="navbar-collapse" id="navbarMenu">
                                 <ul class="navbar-nav align-items-lg-center">
                                     <li class="nav-item"><a class="nav-link text-uppercase pe-4"
-                                            href="index.html">Home</a></li>
+                                            href="/">Home</a></li>
                                     <li class="nav-item d-none d-lg-flex">
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link text-uppercase pe-4"
-                                            href="about.html">About</a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-uppercase pe-4"
+                                            href="{% url 'consultations:consultations' %}">
+                                            Consultations
+                                        </a>
+                                    </li>
                                     <li class="nav-item d-none d-lg-flex">
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
@@ -87,22 +91,6 @@
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
 
-                                    <!-- Blog -->
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link text-uppercase me-4 dropdown-toggle"
-                                            data-bs-toggle="dropdown" href="#" role="button"
-                                            aria-expanded="false">Blog</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="blog.html" class="dropdown-item fw-semibold">Blog <span
-                                                        class="badge bg-primary">PRO</span></a></li>
-                                            <li><a href="single-post.html" class="dropdown-item fw-semibold">Single Post
-                                                    <span class="badge bg-primary">PRO</span></a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item d-none d-lg-flex">
-                                        <p class="nav-link text-uppercase m-0 pe-4">/</p>
-                                    </li>
 
 
 
