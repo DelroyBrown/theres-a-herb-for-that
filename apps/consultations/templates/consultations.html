@@ -28,309 +28,173 @@
       <div class="inquiry-item col-lg-12">
         <div class="rounded-5">
           <form name="contactform" action="" method="post" class="form-group contact-form">
+            {% csrf_token %}
 
             <!-- FIRST / LAST NAME -->
             <div class="form-input col-lg-12 d-flex justify-content-between mb-4">
-              <div class="w-100 me-3">
-                <label class="mb-2 fs-6 text-dark">First Name*</label>
-                <input type="text" name="name" placeholder="Write Your Name Here"
-                  class="form-control shadow-none px-3 py-2" required="">
+              <div class="form-floating w-100 me-3">
+                <input type="text" class="form-control shadow-none px-3 py-2" id="first_name" name="first_name"
+                  placeholder="First Name" required>
+                <label for="first_name">First Name*</label>
               </div>
-              <div class="w-100">
-                <label class="mb-2 fs-6 text-dark">Last Name*</label>
-                <input type="email" name="email" placeholder="Write Your Email Here"
-                  class="form-control shadow-none px-3 py-2" required="">
+              <div class="form-floating w-100">
+                <input type="text" class="form-control shadow-none px-3 py-2" id="last_name" name="last_name"
+                  placeholder="Last Name" required>
+                <label for="last_name">Last Name*</label>
               </div>
-
             </div>
 
             <!-- EMAIL / CONTACT NUMBER -->
             <div class="col-lg-12 mb-4">
               <div class="row">
                 <div class="col-lg-6">
-                  <label class="mb-2 fs-6 text-dark">Email</label>
-                  <input type="text" name="email" placeholder="Email" class="form-control shadow-none px-3 py-2">
+                  <div class="form-floating">
+                    <input type="email" class="form-control shadow-none px-3 py-2" id="email" name="email"
+                      placeholder="Email">
+                    <label for="email">Email</label>
+                  </div>
                 </div>
                 <div class="col-lg-6">
-                  <label class="mb-2 fs-6 text-dark">Contact Number</label>
-                  <input type="text" name="phone" placeholder="Contact Number"
-                    class="form-control shadow-none px-3 py-2">
+                  <div class="form-floating">
+                    <input type="tel" class="form-control shadow-none px-3 py-2" id="phone" name="phone"
+                      placeholder="Contact Number">
+                    <label for="phone">Contact Number</label>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- DATE OF BIRTH  -->
+            <!-- DATE OF BIRTH -->
             <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Date of Birth</label>
-
-              <input type="date" name="dob" placeholder="Write Your Subject Here"
-                class="form-control shadow-none px-3 py-2">
+              <div class="form-floating">
+                <input type="date" class="form-control shadow-none px-3 py-2" id="dob" name="dob"
+                  placeholder="Date of Birth">
+                <label for="dob">Date of Birth</label>
+              </div>
             </div>
 
             <hr class="my-5">
-            <h4 class=" fw-semibold">Health & Safety</h4>
-            <p>The following questions are meant for your health & safety.</p>
+            <h4 class="fw-semibold">Health &amp; Safety</h4>
+            <p>The following questions are meant for your health &amp; safety.</p>
 
-
-            <div class="col-lg-12">
-              <!-- ALLERGIES -->
-              <div class="col-lg-12 mb-4">
-                <label class="mb-2 fs-6 text-dark">Do You Have Any Allergies?</label>
-
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Yes
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    No
-                  </label>
-                </div>
+            <!-- YES/NO RADIO SECTIONS -->
+            {% for field, label in [
+            ('has_allergies', 'Do You Have Any Allergies?'),
+            ('has_medical_conditions', 'Do You Have Any Medical Conditions?'),
+            ('recent_major_health_event', 'Have You Experienced Any Major Health Events Recently?'),
+            ('taking_meds_or_supplements', 'Are You Taking Any Medications or Supplements?'),
+            ('sensitive_skin_or_dermatitis', 'Do You Have Sensitive Skin or Dermatitis?')
+            ] %}
+            <div class="col-lg-12 mb-4">
+              <p class="mb-2 fs-6 text-dark">{{ label }}</p>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="{{ field }}" id="{{ field }}_yes" value="yes">
+                <label class="form-check-label" for="{{ field }}_yes">Yes</label>
               </div>
-
-              <!-- MEDICAL CONDITIONS -->
-              <div class="col-lg-12 mb-4">
-                <label class="mb-2 fs-6 text-dark">Do You Have Any Medical Conditions?</label>
-
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                  <label class="form-check-label" for="flexRadioDefault3">
-                    Yes
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                  <label class="form-check-label" for="flexRadioDefault4">
-                    No
-                  </label>
-                </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="{{ field }}" id="{{ field }}_no" value="no">
+                <label class="form-check-label" for="{{ field }}_no">No</label>
               </div>
             </div>
+            {% endfor %}
 
-            <!-- MAJOR HEALTH EVENTS -->
+            <!-- PREGNANCY / BF / TTC -->
             <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Have you experienced any major health events in the past 6 months (e.g.
-                severe injury, surgery, hospitalisation, chemotherapy / radiotherapy?)
-              </label>
-
+              <p class="mb-2 fs-6 text-dark">Are You Pregnant, Breastfeeding, or Trying to Conceive?</p>
+              {% for val, text in [
+              ('pregnant', 'Pregnant'),
+              ('breastfeeding', 'Breastfeeding'),
+              ('ttc', 'Trying to Conceive'),
+              ('none', 'None of the Above')
+              ] %}
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Yes
-                </label>
+                <input class="form-check-input" type="radio" name="pregnancy_status" id="{{ val }}" value="{{ val }}">
+                <label class="form-check-label" for="{{ val }}">{{ text }}</label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  No
-                </label>
-              </div>
-            </div>
-
-            <!-- MEDICATION / SUPPLEMENTS -->
-            <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Are You Crrently Taking Any Medication Of Supplements?
-              </label>
-
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Yes
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  No
-                </label>
-              </div>
-            </div>
-
-            <!-- PREGNANT / BREASTFEEDING / TRYING TO CONCEIVE -->
-            <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Are You...
-              </label>
-
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Pregnant
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Breastfeeding
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Trying to Conceive
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  None of The Above
-                </label>
-              </div>
-            </div>
-
-            <!-- SENSITIVE SKIN -->
-            <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Do You Have Sensitive Skin, Eczema or Dermatisis?
-              </label>
-
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Yes
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  No
-                </label>
-              </div>
-
+              {% endfor %}
             </div>
 
             <!-- SELF-CARE GOALS -->
             <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Your Self-Care Goals
-              </label>
-
+              <p class="mb-2 fs-6 text-dark">Your Self-Care Goals</p>
+              {% for val, text in [
+              ('relax_stress','Relaxation & Stress Relief'),
+              ('better_sleep','Better Sleep'),
+              ('skincare','Skincare & Nourishment'),
+              ('energy_focus','More Energy / Focus'),
+              ('emotional_balance','Emotional Balance'),
+              ('other','Other')
+              ] %}
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Relaxation & Stress Relief
-                </label>
+                <input class="form-check-input" type="radio" name="self_care_goal" id="goal_{{ val }}"
+                  value="{{ val }}">
+                <label class="form-check-label" for="goal_{{ val }}">{{ text }}</label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Better Sleep
-                </label>
+              {% endfor %}
+              <div class="form-floating mt-2">
+                <input type="text" class="form-control shadow-none px-3 py-2" id="self_care_goal_other"
+                  name="self_care_goal_other" placeholder="If Other, tell us more">
+                <label for="self_care_goal_other">If “Other”, tell us more</label>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Skincare & Nourishment
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  More Energy / Focus
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Emotional Balance
-                </label>
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Other...
-                </label>
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-              </div>
-
             </div>
-
 
             <hr class="my-5">
-            <h4 class=" fw-semibold">Product References</h4>
+            <h4 class="fw-semibold">Product Preferences</h4>
             <p>What Type of Products Are You Looking For?</p>
 
-
-            <!-- PRODUCTS I'M INTERESTED IN -->
+            <!-- PRODUCT INTEREST -->
             <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Products I'm Most Interested In
-              </label>
+              {% for val, text in [
+              ('herbal_beverages','Herbal Beverages'),
+              ('facial_care','Facial Care'),
+              ('oral_care','Oral Care'),
+              ('body_care','Body Care'),
+              ('open_any','Open To Anything!')
+              ] %}
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="product_interest" id="prod_{{ val }}"
+                  value="{{ val }}">
+                <label class="form-check-label" for="prod_{{ val }}">{{ text }}</label>
+              </div>
+              {% endfor %}
+            </div>
 
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Herbal Beverages
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Facial Care
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  Oral Care
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Body Care
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label" for="flexRadioDefault4">
-                  Open To Anything!
-                </label>
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
+            <!-- ADDITIONAL MESSAGE -->
+            <div class="col-lg-12 mb-4">
+              <div class="form-floating">
+                <textarea class="form-control shadow-none px-3 py-2" id="message" name="message"
+                  placeholder="Write Your Message Here" style="height: 150px;"></textarea>
+                <label for="message">Is There Anything Else You Would Like Me To Know About Your Care Needs?</label>
               </div>
             </div>
 
-            <!-- ADDITIONAL CARE NEEDS INFO -->
+            <!-- CONSENTS -->
             <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Is There Anything Else You Would Like Me To Know About Your Care
-                Needs?</label>
-
-              <textarea name="message" placeholder="Write Your Message Here" class="form-control shadow-none px-3 py-2"
-                style="height:150px;" required=""></textarea>
+              <p class="mb-2 fs-6 text-dark">Consent</p>
+              {% for field, text in [
+              ('consent_understand_not_medical', 'I understand that these products support wellbeing but do not replace
+              medical treatment.'),
+              ('consent_review_answers', 'I consent to my answers being reviewed so I can receive safe, suitable
+              recommendations.'),
+              ('consent_read_safety_info', 'I agree to read the safety information provided regarding products I am
+              interested in purchasing.'),
+              ('consent_use_products_safely', 'I agree to use products safely, according to the instructions provided on
+              the packaging.')
+              ] %}
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="{{ field }}" id="{{ field }}">
+                <label class="form-check-label" for="{{ field }}">{{ text }}</label>
+              </div>
+              {% endfor %}
             </div>
 
-            <!-- CONSENT -->
-            <div class="col-lg-12 mb-4">
-              <label class="mb-2 fs-6 text-dark">Consent
-              </label>
-
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  I understand that these products support wellbeing but do not replace medical treatment.
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  I consent to my answers being reviewed so I can receive safe, suitable recommendations.
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
-                  I agree to read the safety information provided regarding products I am interested in purchasing
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" checked>
-                <label class="form-check-label" for="flexRadioDefault4">
-                  I agree to use products safely, according to the instructions provided on the packaging
-                </label>
-              </div>
-
-            </div>
+            <!-- SUBMIT -->
             <div class="d-grid">
               <button type="submit" name="submit" class="btn btn-primary fs-6 py-3">Submit</button>
             </div>
           </form>
+
+
         </div>
       </div>
     </div>

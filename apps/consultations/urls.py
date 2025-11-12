@@ -1,4 +1,4 @@
-# consultations\urls.py
+# apps\consultations\urls.py
 from django.urls import path
 from . import views
 
