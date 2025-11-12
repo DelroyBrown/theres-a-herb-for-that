@@ -2,9 +2,14 @@
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ConsultationForm
-from .models import PregnancyStatus, SelfCareGoal, ProductInterest
+from .models import (
+    PregnancyStatus,
+    SelfCareGoal,
+    ProductInterest,
+    ConsultationSubmition,
+)
 
 
 def consultations(request):
@@ -83,8 +88,9 @@ def consultations(request):
             except Exception:
                 pass
 
-            messages.success(request, "Thanks — your consultation was submitted.")
-            return redirect(request.path)  # PRG pattern: avoids double-post on refresh
+            # Redirect to the Sent page
+            return redirect("consultations:consultation_sent", pk=sub.pk)
+
 
         # Form invalid: show errors and keep user inputs “sticky”
         for field, errs in form.errors.items():
@@ -118,3 +124,9 @@ def consultations(request):
             "product_interests": product_interests,
         },
     )
+
+
+def consultation_sent(request, pk):
+    # Detail page showing the just submitted data
+    sub = get_object_or_404(ConsultationSubmition, pk=pk)
+    return render(request, "consultation_sent.html", {"sub": sub})

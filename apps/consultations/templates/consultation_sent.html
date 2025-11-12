@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="my-lg-9">
+    <div class="container-lg">
+        <div class="row align-items-center my-lg-9">
+            <div class="col-lg-8">
+                <h6 class="text-uppercase text-muted mb-2 letter-spaced-6px sub-heading">Thank you</h6>
+                <h2 class="display-4 fw-semibold my-3">Your consultation has been sent</h2>
+                <p class="fs-5 text-muted">Here’s a copy of what you submitted. We’ll be in touch if anything else is
+                    needed.</p>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <a href="{% url 'consultations:consultations' %}" class="btn btn-outline-primary">Back to form</a>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="card rounded-4 shadow-sm">
+                    <div class="card-body p-4 p-lg-5">
+
+                        <h4 class="fw-semibold mb-3">Contact</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6"><strong>Name:</strong> {{ sub.first_name }} {{ sub.last_name }}</div>
+                            <div class="col-md-6"><strong>Email:</strong> {{ sub.email|default:"—" }}</div>
+                            <div class="col-md-6"><strong>Phone:</strong> {{ sub.phone|default:"—" }}</div>
+                            <div class="col-md-6"><strong>DOB:</strong> {{ sub.dob|date:"Y-m-d"|default:"—" }}</div>
+                            <div class="col-md-6"><strong>Submitted:</strong> {{ sub.submitted_at|date:"Y-m-d H:i" }}
+                            </div>
+                        </div>
+
+                        <h4 class="fw-semibold mb-3">Health &amp; Safety</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6"><strong>Allergies:</strong> {{ sub.has_allergies|yesno:"Yes,No,Not
+                                specified" }}</div>
+                            <div class="col-md-6"><strong>Medical Conditions:</strong> {{
+                                sub.has_medical_conditions|yesno:"Yes,No,Not specified" }}</div>
+                            <div class="col-md-6"><strong>Recent Major Health Event:</strong> {{
+                                sub.recent_major_health_event|yesno:"Yes,No,Not specified" }}</div>
+                            <div class="col-md-6"><strong>Meds or Supplements:</strong> {{
+                                sub.taking_meds_or_supplements|yesno:"Yes,No,Not specified" }}</div>
+                            <div class="col-md-6"><strong>Sensitive Skin/Dermatitis:</strong> {{
+                                sub.sensitive_skin_or_dermatitis|yesno:"Yes,No,Not specified" }}</div>
+                            <div class="col-md-6"><strong>Pregnancy Status:</strong> {{
+                                sub.get_pregnancy_status_display|default:"—" }}</div>
+                        </div>
+
+                        <h4 class="fw-semibold mb-3">Goals &amp; Preferences</h4>
+                        <div class="row mb-4">
+                            <div class="col-md-6"><strong>Self-care Goal:</strong> {{
+                                sub.get_self_care_goals_display|default:"—" }}</div>
+                            <div class="col-md-6"><strong>Self-care Goal (Other):</strong> {{
+                                sub.self_care_goals_other|default:"—" }}</div>
+                            <div class="col-md-6"><strong>Product Interest:</strong> {{
+                                sub.get_product_interests_display|default:"—" }}</div>
+                        </div>
+
+                        <h4 class="fw-semibold mb-3">Additional Message</h4>
+                        <p class="mb-4">{{ sub.message|default:"—" }}</p>
+
+                        <h4 class="fw-semibold mb-3">Consent</h4>
+                        <ul class="list-unstyled">
+                            <li>Understand not medical advice: <strong>{{
+                                    sub.consent_understand_not_medical|yesno:"Yes,No,Not specified" }}</strong></li>
+                            <li>Consent to review answers: <strong>{{ sub.consent_review_answers|yesno:"Yes,No,Not
+                                    specified" }}</strong></li>
+                            <li>Read safety info: <strong>{{ sub.consent_read_safety_info|yesno:"Yes,No,Not specified"
+                                    }}</strong></li>
+                            <li>Use products safely: <strong>{{ sub.consent_use_products_safely|yesno:"Yes,No,Not
+                                    specified" }}</strong></li>
+                        </ul>
+
+                        {# Optional: show raw payload when you need to debug #}
+                        {% if sub.raw_post %}
+                        <details class="mt-4">
+                            <summary class="mb-2">Raw submission (debug)</summary>
+                            <pre class="bg-light p-3 rounded-3"
+                                style="white-space:pre-wrap">{{ sub.raw_post|json_script:"raw_post" }}</pre>
+                        </details>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr class="text-dark opacity-100 mx-lg-5">
+{% endblock %}
