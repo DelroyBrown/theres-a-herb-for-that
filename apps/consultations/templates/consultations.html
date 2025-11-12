@@ -30,16 +30,28 @@
           <form name="contactform" action="" method="post" class="form-group contact-form">
             {% csrf_token %}
 
+            {# Flash messages #}
+            {% if messages %}
+            <div class="mb-4">
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags|default:'info' }} mb-2" role="alert">
+                {{ message }}
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+
             <!-- FIRST / LAST NAME -->
             <div class="form-input col-lg-12 d-flex justify-content-between mb-4">
               <div class="form-floating w-100 me-3">
-                <input type="text" class="form-control shadow-none px-3 py-2" id="first_name" name="first_name"
-                  placeholder="First Name" required>
+                <input type="text" class="form-control shadow-none px-3" id="first_name" name="first_name"
+                  placeholder="First Name"
+                  required value="{{ form_values.first_name|default:'' }}">
                 <label for="first_name">First Name*</label>
               </div>
               <div class="form-floating w-100">
-                <input type="text" class="form-control shadow-none px-3 py-2" id="last_name" name="last_name"
-                  placeholder="Last Name" required>
+                <input type="text" class="form-control shadow-none px-3" id="last_name" name="last_name"
+                  placeholder="Last Name" required value="{{ form_values.last_name|default:'' }}">
                 <label for="last_name">Last Name*</label>
               </div>
             </div>
@@ -49,15 +61,15 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-floating">
-                    <input type="email" class="form-control shadow-none px-3 py-2" id="email" name="email"
-                      placeholder="Email">
+                    <input type="email" class="form-control shadow-none px-3" id="email" name="email"
+                      placeholder="Email" value="{{ form_values.email|default:'' }}">
                     <label for="email">Email</label>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-floating">
-                    <input type="tel" class="form-control shadow-none px-3 py-2" id="phone" name="phone"
-                      placeholder="Contact Number">
+                    <input type="tel" class="form-control shadow-none px-3" id="phone" name="phone"
+                      placeholder="Contact Number" value="{{ form_values.phone|default:'' }}">
                     <label for="phone">Contact Number</label>
                   </div>
                 </div>
@@ -67,8 +79,8 @@
             <!-- DATE OF BIRTH -->
             <div class="col-lg-12 mb-4">
               <div class="form-floating">
-                <input type="date" class="form-control shadow-none px-3 py-2" id="dob" name="dob"
-                  placeholder="Date of Birth">
+                <input type="date" class="form-control shadow-none px-3" id="dob" name="dob"
+                  placeholder="Date of Birth" value="{{ form_values.dob|default:'' }}">
                 <label for="dob">Date of Birth</label>
               </div>
             </div>
@@ -77,64 +89,53 @@
             <h4 class="fw-semibold">Health &amp; Safety</h4>
             <p>The following questions are meant for your health &amp; safety.</p>
 
-            <!-- YES/NO RADIO SECTIONS -->
-            {% for field, label in [
-            ('has_allergies', 'Do You Have Any Allergies?'),
-            ('has_medical_conditions', 'Do You Have Any Medical Conditions?'),
-            ('recent_major_health_event', 'Have You Experienced Any Major Health Events Recently?'),
-            ('taking_meds_or_supplements', 'Are You Taking Any Medications or Supplements?'),
-            ('sensitive_skin_or_dermatitis', 'Do You Have Sensitive Skin or Dermatitis?')
-            ] %}
-            <div class="col-lg-12 mb-4">
-              <p class="mb-2 fs-6 text-dark">{{ label }}</p>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="{{ field }}" id="{{ field }}_yes" value="yes">
-                <label class="form-check-label" for="{{ field }}_yes">Yes</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="{{ field }}" id="{{ field }}_no" value="no">
-                <label class="form-check-label" for="{{ field }}_no">No</label>
-              </div>
+            <!-- YES/NO RADIO SECTIONS (from view: yesno_fields) -->
+          {% for field, label, current in yesno_fields %}
+          <div class="col-lg-12 mb-4">
+            <p class="mb-2 fs-6 text-dark">{{ label }}</p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="{{ field }}"
+              id="{{ field }}_yes" value="yes"
+              {% if current == 'yes' %}checked{% endif %}>
+              <label class="form-check-label" for="{{ field }}_yes">Yes</label>
             </div>
-            {% endfor %}
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="{{ field }}" id="{{ field }}_no" value="no"
+              {% if current == 'no' %}checked{% endif %}>
+              <label class="form-check-label" for="{{ field }}_no">No</label>
+            </div>
+          </div>
+          {% endfor %}
 
-            <!-- PREGNANCY / BF / TTC -->
+
+            <!-- PREGNANCY / BF / TTC (from view: pregnancy_options) -->
             <div class="col-lg-12 mb-4">
               <p class="mb-2 fs-6 text-dark">Are You Pregnant, Breastfeeding, or Trying to Conceive?</p>
-              {% for val, text in [
-              ('pregnant', 'Pregnant'),
-              ('breastfeeding', 'Breastfeeding'),
-              ('ttc', 'Trying to Conceive'),
-              ('none', 'None of the Above')
-              ] %}
+              {% for val, text in pregnancy_options %}
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="pregnancy_status" id="{{ val }}" value="{{ val }}">
-                <label class="form-check-label" for="{{ val }}">{{ text }}</label>
+                <input class="form-check-input" type="radio" name="pregnancy_status" id="preg_{{ val }}"
+                  value="{{ val }}"
+                  {% if form_values.pregnancy_status == val %}checked{% endif %}>
+                <label class="form-check-label" for="preg_{{ val }}">{{ text }}</label>
               </div>
               {% endfor %}
             </div>
 
-            <!-- SELF-CARE GOALS -->
+            <!-- SELF-CARE GOALS (from view: self_care_goals) -->
             <div class="col-lg-12 mb-4">
               <p class="mb-2 fs-6 text-dark">Your Self-Care Goals</p>
-              {% for val, text in [
-              ('relax_stress','Relaxation & Stress Relief'),
-              ('better_sleep','Better Sleep'),
-              ('skincare','Skincare & Nourishment'),
-              ('energy_focus','More Energy / Focus'),
-              ('emotional_balance','Emotional Balance'),
-              ('other','Other')
-              ] %}
+              {% for val, text in self_care_goals %}
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="self_care_goal" id="goal_{{ val }}"
-                  value="{{ val }}">
+                <input class="form-check-input" type="radio" name="self_care_goals" id="goal_{{ val }}" value="{{ val }}"
+                  {% if form_values.self_care_goals == val %}checked{% endif %}>
                 <label class="form-check-label" for="goal_{{ val }}">{{ text }}</label>
               </div>
               {% endfor %}
               <div class="form-floating mt-2">
-                <input type="text" class="form-control shadow-none px-3 py-2" id="self_care_goal_other"
-                  name="self_care_goal_other" placeholder="If Other, tell us more">
-                <label for="self_care_goal_other">If “Other”, tell us more</label>
+                <input type="text" class="form-control shadow-none px-3" id="self_care_goals_other"
+                  name="self_care_goals_other" placeholder="If Other, tell us more"
+                  value="{{ form_values.self_care_goals_other|default:'' }}">
+                <label for="self_care_goals_other">If “Other”, tell us more</label>
               </div>
             </div>
 
@@ -142,18 +143,13 @@
             <h4 class="fw-semibold">Product Preferences</h4>
             <p>What Type of Products Are You Looking For?</p>
 
-            <!-- PRODUCT INTEREST -->
+            <!-- PRODUCT INTEREST (from view: product_interests) -->
             <div class="col-lg-12 mb-4">
-              {% for val, text in [
-              ('herbal_beverages','Herbal Beverages'),
-              ('facial_care','Facial Care'),
-              ('oral_care','Oral Care'),
-              ('body_care','Body Care'),
-              ('open_any','Open To Anything!')
-              ] %}
+              {% for val, text in product_interests %}
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="product_interest" id="prod_{{ val }}"
-                  value="{{ val }}">
+                <input class="form-check-input" type="radio" name="product_interests" id="prod_{{ val }}"
+                  value="{{ val }}"
+                  {% if form_values.product_interests == val %}checked{% endif %}>
                 <label class="form-check-label" for="prod_{{ val }}">{{ text }}</label>
               </div>
               {% endfor %}
@@ -162,39 +158,57 @@
             <!-- ADDITIONAL MESSAGE -->
             <div class="col-lg-12 mb-4">
               <div class="form-floating">
-                <textarea class="form-control shadow-none px-3 py-2" id="message" name="message"
-                  placeholder="Write Your Message Here" style="height: 150px;"></textarea>
+                <textarea class="form-control shadow-none px-3" id="message" name="message"
+                  placeholder="Write Your Message Here"
+                  style="height: 150px;">{{ form_values.message|default:'' }}</textarea>
                 <label for="message">Is There Anything Else You Would Like Me To Know About Your Care Needs?</label>
               </div>
             </div>
 
-            <!-- CONSENTS -->
+            <!-- CONSENTS (manual list; keeps styling) -->
             <div class="col-lg-12 mb-4">
               <p class="mb-2 fs-6 text-dark">Consent</p>
-              {% for field, text in [
-              ('consent_understand_not_medical', 'I understand that these products support wellbeing but do not replace
-              medical treatment.'),
-              ('consent_review_answers', 'I consent to my answers being reviewed so I can receive safe, suitable
-              recommendations.'),
-              ('consent_read_safety_info', 'I agree to read the safety information provided regarding products I am
-              interested in purchasing.'),
-              ('consent_use_products_safely', 'I agree to use products safely, according to the instructions provided on
-              the packaging.')
-              ] %}
+
               <div class="form-check mb-2">
-                <input class="form-check-input" type="checkbox" name="{{ field }}" id="{{ field }}">
-                <label class="form-check-label" for="{{ field }}">{{ text }}</label>
+                <input class="form-check-input" type="checkbox" name="consent_understand_not_medical"
+                  id="consent_understand_not_medical"
+                  {% if form_values.consent_understand_not_medical %}checked{% endif %}>
+                <label class="form-check-label" for="consent_understand_not_medical">
+                  I understand that these products support wellbeing but do not replace medical treatment.
+                </label>
               </div>
-              {% endfor %}
+
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="consent_review_answers"
+                  id="consent_review_answers" {% if form_values.consent_review_answers %}checked{% endif %}>
+                <label class="form-check-label" for="consent_review_answers">
+                  I consent to my answers being reviewed so I can receive safe, suitable recommendations.
+                </label>
+              </div>
+
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="consent_read_safety_info"
+                  id="consent_read_safety_info" {% if form_values.consent_read_safety_info %}checked{% endif %}>
+                <label class="form-check-label" for="consent_read_safety_info">
+                  I agree to read the safety information provided regarding products I am interested in purchasing.
+                </label>
+              </div>
+
+              <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" name="consent_use_products_safely"
+                  id="consent_use_products_safely" {% if form_values.consent_use_products_safely %}checked{% endif %}>
+                <label class="form-check-label" for="consent_use_products_safely">
+                  I agree to use products safely, according to the instructions provided on the packaging.
+                </label>
+              </div>
             </div>
 
             <!-- SUBMIT -->
             <div class="d-grid">
               <button type="submit" name="submit" class="btn btn-primary fs-6 py-3">Submit</button>
             </div>
+
           </form>
-
-
         </div>
       </div>
     </div>
