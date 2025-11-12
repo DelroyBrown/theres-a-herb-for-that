@@ -4,7 +4,7 @@ from django.db import models
 
 class PregnancyStatus(models.TextChoices):
     PREGNANT = "pregnant", "Pregnant"
-    BREASTFEEDING = "breastfeeding", "Breasting Feeding"
+    BREASTFEEDING = "breastfeeding", "Breast Feeding"
     TRYING_TO_CONCEIVE = "trying to conceive", "Trying To Conceive"
     NONE = "none", "None of the Above"
 

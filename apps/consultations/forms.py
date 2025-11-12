@@ -1,5 +1,6 @@
 # apps\consultations\forms.py
 from django import forms
+from django.core.exceptions import ValidationError
 from .models import (
     ConsultationSubmition,
     PregnancyStatus,
@@ -142,6 +143,27 @@ class ConsultationForm(forms.ModelForm):
             "consent_read_safety_info",
             "consent_use_products_safely",
         ]
+
+    def clean(self):
+        cleaned = super().clean()
+
+        must_acknowledge = cleaned.get("consent_understand_not_medical")
+        must_review = cleaned.get("consent_review_answers")
+
+        errors = {}
+        if not must_acknowledge:
+            errors["consent_understand_not_medical"] = (
+                "You must acknowledge this to submit the form."
+            )
+        if not must_review:
+            errors["consent_review_answers"] = (
+                "You must consent to review to submit the form."
+            )
+
+        if errors:
+            for field, msg in errors.items():
+                self.add_error(field, msg)
+            raise ValidationError("Please complete the required consent questions.")
 
     def save(self, commit=True, raw_post=None):
         """
