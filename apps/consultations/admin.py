@@ -92,7 +92,7 @@ class ConsultationSubmitionAdmin(admin.ModelAdmin):
         ),
     )
 
-    readonly_fields = ("submitted_at", "raw_post_pretty")
+    readonly_fields = ("submitted_at", "raw_post_pretty", "consent_understand_not_medical", "consent_review_answers", "consent_read_safety_info", "consent_use_products_safely")
     actions = ["export_as_csv"]
 
     # ---------- DISPLAY HELPERS ----------

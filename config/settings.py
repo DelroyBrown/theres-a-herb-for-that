@@ -16,7 +16,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # Django
-    'jazzmin',
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -97,3 +97,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # MESSAGE_TAGS = {
 #     messages.ERROR: "danger",
 # }
+
+
+JAZZMIN_SETTINGS = {
+    "site_brand": "Scentience Admin",
+    "welcome_sign" : "Scentience Admin",
+    "login_logo" : "img/scentience_logo.png",
+}
