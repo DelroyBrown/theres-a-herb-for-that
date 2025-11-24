@@ -1,121 +1,134 @@
 {% load static %}
-
 <link rel="stylesheet" href="{% static 'style.css' %}">
-
 <!-- SVG sprite placeholder (replace with your real sprite or external file) -->
 <svg aria-hidden="true" width="0" height="0" style="position:absolute">
     <symbol id="navbar-icon" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
+    <path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z" />
     </symbol>
     <symbol id="user" viewBox="0 0 24 24">
-        <path fill="currentColor"
-            d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-5.33 0-8 2.67-8 6v2h16v-2c0-3.33-2.67-6-8-6" />
+    <path fill="currentColor" d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-5.33 0-8 2.67-8 6v2h16v-2c0-3.33-2.67-6-8-6" />
     </symbol>
     <symbol id="search" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M9.5 3a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13M20 20l-4.35-4.35" />
+    <path fill="currentColor" d="M9.5 3a6.5 6.5 0 1 1 0 13a6.5 6.5 0 0 1 0-13M20 20l-4.35-4.35" />
     </symbol>
     <symbol id="cart" viewBox="0 0 24 24">
-        <path fill="currentColor"
-            d="M7 18a2 2 0 1 0 0 4a2 2 0 0 0 0-4m10 0a2 2 0 1 0 0 4a2 2 0 0 0 0-4M7.16 14h9.93a2 2 0 0 0 1.9-1.37l2.38-6.65A1 1 0 0 0 20.44 4H6.21L5.27 1.43A1 1 0 0 0 4.35 1H2v2h1.36l3.6 9.59l-.84 2.11A2 2 0 0 0 8 17h12v-2H8z" />
+    <path fill="currentColor" d="M7 18a2 2 0 1 0 0 4a2 2 0 0 0 0-4m10 0a2 2 0 1 0 0 4a2 2 0 0 0 0-4M7.16 14h9.93a2 2 0 0 0 1.9-1.37l2.38-6.65A1 1 0 0 0 20.44 4H6.21L5.27 1.43A1 1 0 0 0 4.35 1H2v2h1.36l3.6 9.59l-.84 2.11A2 2 0 0 0 8 17h12v-2H8z" />
     </symbol>
 </svg>
-
-
 <header id="header" class="site-header border-bottom mx-lg-5 py-3">
     <div class="container-fluid px-4 px-lg-2">
         <div class="row">
             <nav class="navbar navbar-expand-lg" aria-label="Primary navigation">
                 <!-- Mobile toggler (offcanvas) -->
-                <button class="navbar-toggler d-flex d-lg-none p-0 order-3 border-0 shadow-none" type="button"
-                    data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler d-flex d-lg-none p-0 order-3 border-0 shadow-none"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#bdNavbar"
+                        aria-controls="bdNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <svg class="navbar-icon" width="40" height="40">
                         <use xlink:href="#navbar-icon"></use>
                     </svg>
                 </button>
-
                 <!-- Mobile brand -->
-                <a href="index.html" class="navbar-brand d-flex d-lg-none">
+                <a href="/" class="navbar-brand d-flex d-lg-none">
                     <img src="{% static 'img/scentience_logo.png' %}" alt="Logo" height="40" />
                 </a>
-
                 <!-- Offcanvas nav -->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar"
-                    aria-labelledby="bdNavbarOffcanvasLabel">
+                <div class="offcanvas offcanvas-end"
+                     tabindex="-1"
+                     id="bdNavbar"
+                     aria-labelledby="bdNavbarOffcanvasLabel">
                     <div class="offcanvas-header p-4">
-                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"
-                            aria-label="Close" data-bs-target="#bdNavbar"></button>
+                        <button type="button"
+                                class="btn-close shadow-none"
+                                data-bs-dismiss="offcanvas"
+                                aria-label="Close"
+                                data-bs-target="#bdNavbar"></button>
                     </div>
-
                     <div class="offcanvas-body d-flex justify-content-lg-between align-items-lg-center p-4 p-lg-0">
                         <!-- Desktop brand -->
                         <div>
-                            <a href="index.html" class="navbar-brand d-none d-lg-flex">
+                            <a href="/" class="navbar-brand d-none d-lg-flex">
                                 <img src="{% static 'img/scentience_logo.png' %}" alt="Logo" height="48" />
                             </a>
                         </div>
-
                         <!-- Main menu -->
                         <div>
                             <div class="navbar-collapse" id="navbarMenu">
                                 <ul class="navbar-nav align-items-lg-center">
-                                    <li class="nav-item"><a class="nav-link text-uppercase pe-4" href="/">Home</a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-uppercase pe-4" href="/">Home</a>
+                                    </li>
                                     <li class="nav-item d-none d-lg-flex">
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link text-uppercase pe-4"
-                                            href="{% url 'consultations:consultations' %}">
-                                            Consultations
-                                        </a>
+                                           href="{% url 'consultations:consultations' %}">Consultations</a>
                                     </li>
                                     <li class="nav-item d-none d-lg-flex">
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-uppercase pe-4" href="{% url 'shop:shop' %}">
-                                            Shop
-                                        </a>
+                                        <a class="nav-link text-uppercase pe-4" href="{% url 'shop:shop' %}">Shop</a>
                                     </li>
                                     <li class="nav-item d-none d-lg-flex">
                                         <p class="nav-link text-uppercase m-0 pe-4">/</p>
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
-
                         <!-- User / utility icons (desktop) -->
                         <div>
-                            <ul
-                                class="user-items list-unstyled d-none d-lg-flex justify-content-end align-items-center flex-grow-1 gap-4 m-0">
+                            <ul class="user-items list-unstyled d-none d-lg-flex justify-content-end align-items-center flex-grow-1 gap-4 m-0">
                                 <li>
-                                    <a href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLogin"
-                                        aria-controls="offcanvasLogin" aria-label="Open login panel">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                            fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                                    <a href="#"
+                                       data-bs-toggle="offcanvas"
+                                       data-bs-target="#offcanvasLogin"
+                                       aria-controls="offcanvasLogin"
+                                       aria-label="Open login panel">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="25"
+                                             height="25"
+                                             fill="currentColor"
+                                             class="bi bi-person-fill"
+                                             viewBox="0 0 16 16">
+                                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                                         </svg>
                                     </a>
                                 </li>
-                                <li class="search-item" data-bs-toggle="collapse" data-bs-target="#search-box"
-                                    aria-controls="search-box" aria-expanded="false" aria-label="Toggle search">
+                                <li class="search-item"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#search-box"
+                                    aria-controls="search-box"
+                                    aria-expanded="false"
+                                    aria-label="Toggle search">
                                     <a href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path
-                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="20"
+                                             height="20"
+                                             fill="currentColor"
+                                             class="bi bi-search"
+                                             viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                                         </svg>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="cart.html" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                                        aria-controls="offcanvasCart" aria-label="Open cart">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                    <a href="cart.html"
+                                       data-bs-toggle="offcanvas"
+                                       data-bs-target="#offcanvasCart"
+                                       aria-controls="offcanvasCart"
+                                       aria-label="Open cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             width="20"
+                                             height="20"
+                                             fill="currentColor"
+                                             class="bi bi-cart-fill"
+                                             viewBox="0 0 16 16">
+                                            <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                                         </svg>
                                         <span>(0)</span>
                                     </a>
@@ -128,13 +141,15 @@
         </div>
     </div>
 </header>
-
-
-
 <!-- Demo offcanvas targets for Login & Cart (empty shells) -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLogin" aria-labelledby="offcanvasLoginLabel"></div>
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel"></div>
-
+<div class="offcanvas offcanvas-end"
+     tabindex="-1"
+     id="offcanvasLogin"
+     aria-labelledby="offcanvasLoginLabel"></div>
+<div class="offcanvas offcanvas-end"
+     tabindex="-1"
+     id="offcanvasCart"
+     aria-labelledby="offcanvasCartLabel"></div>
 <script>
     // Keep your CSS-driven height animation for the search box by toggling .active with Collapse events
     (function () {

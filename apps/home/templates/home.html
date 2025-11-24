@@ -1,165 +1,154 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 {% block content %}
-
-<!-- HERO SECTION -->
-<section id="intro" class="my-lg-9 mt-5">
-  <div class="container-lg">
-    <div class="row flex-row-reverse align-items-center ">
-      <div class="col-lg-8">
-        <div class="image-holder text-end">
-          <img src="{% static 'img/hero-img-3.png' %}" alt="banner" class="img-fluid ">
+  <!-- HERO SECTION -->
+  <section id="intro" class="my-lg-9 mt-5">
+    <div class="container-lg">
+      <div class="row flex-row-reverse align-items-center ">
+        <div class="col-lg-8">
+          <div class="image-holder text-end">
+            <img src="{% static 'img/hero-img-3.png' %}"
+                 alt="banner"
+                 class="img-fluid ">
+          </div>
         </div>
-      </div>
-      <div class="col-lg-4 mt-5 mt-lg-0">
-        <div class="banner-content ">
-          <h6 class="sub-heading">Herbal Wellness</h6>
-          <h2 class="display-3 fw-semibold my-4 my-lg-5">Herbal Wellness For Mind &amp; Body</h2>
-          <p class="fs-3">Natural herbal and self-care products crafted to nourish your body, calm your mind, and
-            support holistic wellbeing.
-          </p>
-
-          <a href="{% url 'shop:shop' %}" class="btn btn-outline-dark text-uppercase mt-4 mt-lg-5 w-md-auto w-100">View
+        <div class="col-lg-4 mt-5 mt-lg-0">
+          <div class="banner-content ">
+            <h6 class="sub-heading">Herbal Wellness</h6>
+            <h2 class="display-3 fw-semibold my-4 my-lg-5">Herbal Wellness For Mind &amp; Body</h2>
+            <p class="fs-3">
+              Natural herbal and self-care products crafted to nourish your body, calm your mind, and
+              support holistic wellbeing.
+            </p>
+            <a href="{% url 'consultations:consultations' %}"
+               class="btn btn-dark text-uppercase mt-4 mt-lg-5 w-md-auto w-100">consultations</a>
+            <a href="{% url 'shop:shop' %}"
+               class="btn btn-outline-dark text-uppercase mt-lg-2 mt-3 w-md-auto w-100">View
             Products</a>
-          <a href="{% url 'consultations:consultations' %}"
-            class="btn btn-dark text-uppercase mt-4 mt-lg-2 w-md-auto w-100">
-            consultations
-          </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<hr class="text-dark opacity-100 mx-lg-5">
+  </section>
+  <hr class="text-dark opacity-100 mx-lg-5">
 
-
-<!-- POPULAR PRODUCTS -->
-<section id="popular">
-  <div class="container-lg">
-    <!-- Header -->
-    <div class="row align-items-center my-lg-9">
-      <div class="col-lg-6">
-        <h6 class="text-uppercase text-muted mb-2 letter-spaced-6px sub-heading">Popular now</h6>
-        <h2 class="display-3 fw-semibold my-4 my-lg-5">
-          Our Most Popular Products
-        </h2>
+  <!-- POPULAR PRODUCTS -->
+  <section id="popular">
+    <div class="container-lg">
+      <!-- Header -->
+      <div class="row align-items-center my-lg-9">
+        <div class="col-lg-6">
+          <h6 class="text-uppercase text-muted mb-2 letter-spaced-6px sub-heading">Popular now</h6>
+          <h2 class="display-3 fw-semibold my-4 my-lg-5">Our Most Popular Products</h2>
+        </div>
+        <div class="col-lg-6">
+          <p class="fs-3 mb-4">
+            Loved by our community for their gentle effectiveness, our bestsellers bring calm, confidence, and natural
+            balance to your daily self-care.
+          </p>
+          <a href="javascript:void(0)"
+             class="btn btn-outline-dark text-uppercase mt-4 mt-lg-5">View all Products</a>
+        </div>
       </div>
-      <div class="col-lg-6">
-        <p class="fs-3 mb-4">
-          Loved by our community for their gentle effectiveness, our bestsellers bring calm, confidence, and natural
-          balance to your daily self-care.
-        </p>
-        <a href="javascript:void(0)" class="btn btn-outline-dark text-uppercase mt-4 mt-lg-5">
-          View all Products
-        </a>
+      <!-- Cards -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 mb-5">
+        <!-- Card 1 -->
+        <div class="col">
+          <div class="card h-100 border-0">
+            <a href="javascript:void(0)">
+              <img src="{% static 'img/product-img-1.png' %}"
+                   class="card-img-top"
+                   alt="Natural Glow">
+            </a>
+            <div class="card-body px-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="text-uppercase mb-0">
+                  <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
+                </h6>
+                <h6 class="text-uppercase mb-0">£8.50</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col">
+          <div class="card h-100 border-0">
+            <a href="javascript:void(0)">
+              <img src="{% static 'img/product-img-3.png' %}"
+                   class="card-img-top"
+                   alt="Natural Glow">
+            </a>
+            <div class="card-body px-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="text-uppercase mb-0">
+                  <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
+                </h6>
+                <h6 class="text-uppercase mb-0">£8.50</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col">
+          <div class="card h-100 border-0">
+            <a href="javascript:void(0)">
+              <img src="{% static 'img/product-img-1.png' %}"
+                   class="card-img-top"
+                   alt="Natural Glow">
+            </a>
+            <div class="card-body px-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="text-uppercase mb-0">
+                  <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
+                </h6>
+                <h6 class="text-uppercase mb-0">£8.50</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col">
+          <div class="card h-100 border-0">
+            <a href="javascript:void(0)">
+              <img src="{% static 'img/product-img-3.png' %}"
+                   class="card-img-top"
+                   alt="Natural Glow">
+            </a>
+            <div class="card-body px-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="text-uppercase mb-0">
+                  <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
+                </h6>
+                <h6 class="text-uppercase mb-0">£8.50</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="col">
+          <div class="card h-100 border-0">
+            <a href="javascript:void(0)">
+              <img src="{% static 'img/product-img-1.png' %}"
+                   class="card-img-top"
+                   alt="Natural Glow">
+            </a>
+            <div class="card-body px-0">
+              <div class="d-flex justify-content-between align-items-center">
+                <h6 class="text-uppercase mb-0">
+                  <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
+                </h6>
+                <h6 class="text-uppercase mb-0">£8.50</h6>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- /row -->
     </div>
+  </section>
+  <hr class="text-dark opacity-100 mx-lg-5">
 
-    <!-- Cards -->
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4 mb-5">
-
-      <!-- Card 1 -->
-      <div class="col">
-        <div class="card h-100 border-0">
-          <a href="javascript:void(0)">
-            <img src="{% static 'img/product-img-1.png' %}" class="card-img-top" alt="Natural Glow">
-          </a>
-          <div class="card-body px-0">
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="text-uppercase mb-0">
-                <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
-              </h6>
-              <h6 class="text-uppercase mb-0">£8.50</h6>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="col">
-        <div class="card h-100 border-0">
-          <a href="javascript:void(0)">
-            <img src="{% static 'img/product-img-3.png' %}" class="card-img-top" alt="Natural Glow">
-          </a>
-          <div class="card-body px-0">
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="text-uppercase mb-0">
-                <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
-              </h6>
-              <h6 class="text-uppercase mb-0">£8.50</h6>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- Card 3 -->
-      <div class="col">
-        <div class="card h-100 border-0">
-          <a href="javascript:void(0)">
-            <img src="{% static 'img/product-img-1.png' %}" class="card-img-top" alt="Natural Glow">
-          </a>
-          <div class="card-body px-0">
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="text-uppercase mb-0">
-                <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
-              </h6>
-              <h6 class="text-uppercase mb-0">£8.50</h6>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- Card 4 -->
-      <div class="col">
-        <div class="card h-100 border-0">
-          <a href="javascript:void(0)">
-            <img src="{% static 'img/product-img-3.png' %}" class="card-img-top" alt="Natural Glow">
-          </a>
-          <div class="card-body px-0">
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="text-uppercase mb-0">
-                <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
-              </h6>
-              <h6 class="text-uppercase mb-0">£8.50</h6>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- Card 5 -->
-      <div class="col">
-        <div class="card h-100 border-0">
-          <a href="javascript:void(0)">
-            <img src="{% static 'img/product-img-1.png' %}" class="card-img-top" alt="Natural Glow">
-          </a>
-          <div class="card-body px-0">
-            <div class="d-flex justify-content-between align-items-center">
-              <h6 class="text-uppercase mb-0">
-                <a href="javascript:void(0)" class="link-dark text-decoration-none">Frankly Fresh</a>
-              </h6>
-              <h6 class="text-uppercase mb-0">£8.50</h6>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-    </div>
-    <!-- /row -->
-  </div>
-</section>
-<hr class="text-dark opacity-100 mx-lg-5">
-
-<!-- FOOTER 2 -->
- {% include 'partials/footer_2.html' %}
-<hr class="text-dark opacity-100 mx-lg-5">
-
-
-
-
-
-
+  <!-- FOOTER 2 -->
+  {% include 'partials/footer_2.html' %}
+  <hr class="text-dark opacity-100 mx-lg-5">
 {% endblock %}
