@@ -8,7 +8,7 @@ from .models import (
     PregnancyStatus,
     SelfCareGoal,
     ProductInterest,
-    ConsultationSubmition,
+    ConsultationSubmission,
 )
 
 
@@ -136,5 +136,5 @@ def consultations(request):
 
 def consultation_sent(request, pk):
     # Detail page showing the just submitted data
-    sub = get_object_or_404(ConsultationSubmition, pk=pk)
+    sub = get_object_or_404(ConsultationSubmission, pk=pk)
     return render(request, "consultation_sent.html", {"sub": sub})

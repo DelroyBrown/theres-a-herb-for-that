@@ -4,12 +4,12 @@ from django.utils.safestring import mark_safe
 import csv
 import json
 
-from .models import ConsultationSubmition
+from .models import ConsultationSubmission
 
 
-@admin.register(ConsultationSubmition)
-class ConsultationSubmitionAdmin(admin.ModelAdmin):
-    """Admin interface for ConsultationSubmition records."""
+@admin.register(ConsultationSubmission)
+class ConsultationSubmissionAdmin(admin.ModelAdmin):
+    """Admin interface for ConsultationSubmission records."""
 
     # ---------- LIST VIEW ----------
     list_display = (

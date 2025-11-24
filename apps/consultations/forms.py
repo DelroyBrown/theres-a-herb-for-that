@@ -2,7 +2,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import (
-    ConsultationSubmition,
+    ConsultationSubmission,
     PregnancyStatus,
     SelfCareGoal,
     ProductInterest,
@@ -121,7 +121,7 @@ class ConsultationForm(forms.ModelForm):
     )
 
     class Meta:
-        model = ConsultationSubmition
+        model = ConsultationSubmission
         fields = [
             "first_name",
             "last_name",

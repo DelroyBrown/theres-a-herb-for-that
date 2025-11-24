@@ -26,7 +26,7 @@ class ProductInterest(models.TextChoices):
     OPEN_TO_ANYTHING = "open_to_anything", "Open to Anything"
 
 
-class ConsultationSubmition(models.Model):
+class ConsultationSubmission(models.Model):
     # Contact
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
