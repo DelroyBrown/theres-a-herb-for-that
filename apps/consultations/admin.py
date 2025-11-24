@@ -53,10 +53,15 @@ class ConsultationSubmitionAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "has_allergies",
+                    "has_allergies_details",
                     "has_medical_conditions",
+                    "has_medical_conditions_details",
                     "recent_major_health_event",
+                    "recent_major_health_event_details",
                     "taking_meds_or_supplements",
+                    "taking_meds_or_supplements_details",
                     "sensitive_skin_or_dermatitis",
+                    "sensitive_skin_or_dermatitis_details",
                     "pregnancy_status",
                 )
             },
@@ -92,7 +97,14 @@ class ConsultationSubmitionAdmin(admin.ModelAdmin):
         ),
     )
 
-    readonly_fields = ("submitted_at", "raw_post_pretty", "consent_understand_not_medical", "consent_review_answers", "consent_read_safety_info", "consent_use_products_safely")
+    readonly_fields = (
+        "submitted_at",
+        "raw_post_pretty",
+        "consent_understand_not_medical",
+        "consent_review_answers",
+        "consent_read_safety_info",
+        "consent_use_products_safely",
+    )
     actions = ["export_as_csv"]
 
     # ---------- DISPLAY HELPERS ----------
@@ -145,10 +157,15 @@ class ConsultationSubmitionAdmin(admin.ModelAdmin):
             "phone",
             "dob",
             "has_allergies",
+            "has_allergies_details",
             "has_medical_conditions",
+            "has_medical_conditions_details",
             "recent_major_health_event",
+            "recent_major_health_event_details",
             "taking_meds_or_supplements",
+            "taking_meds_or_supplements_details",
             "sensitive_skin_or_dermatitis",
+            "sensitive_skin_or_dermatitis_details",
             "pregnancy_status",
             "self_care_goals",
             "self_care_goals_other",
@@ -159,7 +176,6 @@ class ConsultationSubmitionAdmin(admin.ModelAdmin):
             "consent_read_safety_info",
             "consent_use_products_safely",
         ]
-
         response = HttpResponse(content_type="text/csv")
         response["Content-Disposition"] = (
             f'attachment; filename="{meta.model_name}_export.csv"'

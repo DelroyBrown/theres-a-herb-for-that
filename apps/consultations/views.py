@@ -18,26 +18,35 @@ def consultations(request):
         return req.POST.get(key, "") if req.method == "POST" else ""
 
     yesno_fields = [
-        ("has_allergies", "Do You Have Any Allergies?", _fv(request, "has_allergies")),
+        (
+            "has_allergies",
+            "Do You Have Any Allergies?",
+            _fv(request, "has_allergies"),
+            _fv(request, "has_allergies_details"),
+        ),
         (
             "has_medical_conditions",
             "Do You Have Any Medical Conditions?",
             _fv(request, "has_medical_conditions"),
+            _fv(request, "has_medical_conditions_details"),
         ),
         (
             "recent_major_health_event",
             "Have You Experienced Any Major Health Events Recently?",
             _fv(request, "recent_major_health_event"),
+            _fv(request, "recent_major_health_event_details"),
         ),
         (
             "taking_meds_or_supplements",
             "Are You Taking Any Medications or Supplements?",
             _fv(request, "taking_meds_or_supplements"),
+            _fv(request, "taking_meds_or_supplements_details"),
         ),
         (
             "sensitive_skin_or_dermatitis",
             "Do You Have Sensitive Skin or Dermatitis?",
             _fv(request, "sensitive_skin_or_dermatitis"),
+            _fv(request, "sensitive_skin_or_dermatitis_details"),
         ),
     ]
 
@@ -90,7 +99,6 @@ def consultations(request):
 
             # Redirect to the Sent page
             return redirect("consultations:consultation_sent", pk=sub.pk)
-
 
         # Form invalid: show errors and keep user inputs “sticky”
         for field, errs in form.errors.items():

@@ -36,16 +36,21 @@ class ConsultationSubmition(models.Model):
 
     # Health & safety (yes/no radios)
     has_allergies = models.BooleanField(null=True, default=False)
+    has_allergies_details = models.TextField(blank=True)
     has_medical_conditions = models.BooleanField(null=True, blank=True, default=False)
+    has_medical_conditions_details = models.TextField(blank=True)
     recent_major_health_event = models.BooleanField(
         null=True, blank=True, default=False
     )
+    recent_major_health_event_details = models.TextField(blank=True)
     taking_meds_or_supplements = models.BooleanField(
         null=True, blank=True, default=False
     )
+    taking_meds_or_supplements_details = models.TextField(blank=True)
     sensitive_skin_or_dermatitis = models.BooleanField(
         null=True, blank=True, default=False
     )
+    sensitive_skin_or_dermatitis_details = models.TextField(blank=True)
 
     # Pregnancy/Breastfeeding/TTC
     pregnancy_status = models.CharField(
@@ -95,5 +100,3 @@ class ConsultationSubmition(models.Model):
     def __str__(self):
         base = f"{self.first_name} {self.last_name}".strip() or "Ananymous"
         return f"{base} - {self.submitted_at:%Y-%m-%d %H:%M}"
-    
-
